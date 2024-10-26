@@ -1,0 +1,38 @@
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.openqa.selenium.By
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
+
+class FooterTest {
+
+    private lateinit var driver: WebDriver
+
+    @BeforeEach
+    fun setUp() {
+        // Инициализация драйвера Chrome
+        val options = ChromeOptions()
+        driver = ChromeDriver(options)
+        
+        // Переход на целевую страницу (замените URL на нужный)
+        driver.get("https://only.digital")
+    }
+
+    @Test
+    fun testFooterPresence() {
+        // Поиск элемента футера на странице по CSS-селектору
+        val footer = driver.findElements(By.cssSelector("footer"))  // Используйте нужный селектор, например, ID или класс
+        
+        // Проверка, что футер существует на странице
+        assertTrue(footer.isNotEmpty(), "Footer is not found on the page")
+    }
+
+    @AfterEach
+    fun tearDown() {
+        // Закрытие браузера
+        driver.quit()
+    }
+}
